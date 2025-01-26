@@ -218,12 +218,12 @@ enum FineTuningState<String> {
 @JsonSerializable()
 class FineTuning {
   @JsonKey(name: 'fine_tuning_requested')
-  final bool fineTuningRequested;
+  final bool? fineTuningRequested;
   @JsonKey(name: 'finetuning_state')
   @FineTuningStateConverter()
   final FineTuningState fineTuningState;
   @JsonKey(name: 'is_allowed_to_fine_tune')
-  final bool isAllowedToFineTune;
+  final bool? isAllowedToFineTune;
   final Language? language;
   @JsonKey(name: 'model_id')
   final String? modelId;

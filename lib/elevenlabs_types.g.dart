@@ -134,10 +134,10 @@ Map<String, dynamic> _$VoiceToJson(Voice instance) => <String, dynamic>{
     };
 
 FineTuning _$FineTuningFromJson(Map<String, dynamic> json) => FineTuning(
-      fineTuningRequested: json['fine_tuning_requested'] as bool,
+      fineTuningRequested: json['fine_tuning_requested'] as bool?,
       fineTuningState: const FineTuningStateConverter()
           .fromJson(json['finetuning_state'] as String),
-      isAllowedToFineTune: json['is_allowed_to_fine_tune'] as bool,
+      isAllowedToFineTune: json['is_allowed_to_fine_tune'] as bool?,
       language: json['language'] == null
           ? null
           : Language.fromJson(json['language'] as Map<String, dynamic>),
@@ -148,7 +148,8 @@ FineTuning _$FineTuningFromJson(Map<String, dynamic> json) => FineTuning(
       verificationAttempts: (json['verification_attempts'] as List<dynamic>?)
           ?.map((e) => VerificationAttempt.fromJson(e as Map<String, dynamic>))
           .toList(),
-      verificationAttemptsCount: json['verification_attempts_count'] as int,
+      verificationAttemptsCount:
+          (json['verification_attempts_count'] as num).toInt(),
       verificationFailures: (json['verification_failures'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
@@ -172,7 +173,7 @@ Map<String, dynamic> _$FineTuningToJson(FineTuning instance) =>
 
 VerificationAttempt _$VerificationAttemptFromJson(Map<String, dynamic> json) =>
     VerificationAttempt(
-      dateUnix: json['date_unix'] as int,
+      dateUnix: (json['date_unix'] as num).toInt(),
       levenshteinDistance: json['levenshtein_distance'] as num,
       recording: Recording.fromJson(json['recording'] as Map<String, dynamic>),
       similarity: json['similarity'] as num,
@@ -192,8 +193,8 @@ Map<String, dynamic> _$VerificationAttemptToJson(
 Recording _$RecordingFromJson(Map<String, dynamic> json) => Recording(
       mimeType: json['mime_type'] as String,
       recordingId: json['recording_id'] as String,
-      sizeBytes: json['size_bytes'] as int,
-      uploadDateUnix: json['upload_date_unix'] as int,
+      sizeBytes: (json['size_bytes'] as num).toInt(),
+      uploadDateUnix: (json['upload_date_unix'] as num).toInt(),
     );
 
 Map<String, dynamic> _$RecordingToJson(Recording instance) => <String, dynamic>{
@@ -217,7 +218,7 @@ Sample _$SampleFromJson(Map<String, dynamic> json) => Sample(
       hash: json['hash'] as String,
       mimeType: json['mime_type'] as String,
       sampleId: json['sample_id'] as String,
-      sizeBytes: json['size_bytes'] as int,
+      sizeBytes: (json['size_bytes'] as num).toInt(),
     );
 
 Map<String, dynamic> _$SampleToJson(Sample instance) => <String, dynamic>{
@@ -229,9 +230,9 @@ Map<String, dynamic> _$SampleToJson(Sample instance) => <String, dynamic>{
     };
 
 Sharing _$SharingFromJson(Map<String, dynamic> json) => Sharing(
-      clonedByCount: json['cloned_by_count'] as int,
+      clonedByCount: (json['cloned_by_count'] as num).toInt(),
       historyItemSampleId: json['history_item_sample_id'] as String,
-      likedByCount: json['liked_by_count'] as int,
+      likedByCount: (json['liked_by_count'] as num).toInt(),
       originalVoiceId: json['original_voice_id'] as String,
       publicOwnerId: json['public_owner_id'] as String,
       status: json['status'] as String,
@@ -306,10 +307,12 @@ Map<String, dynamic> _$HistoryToJson(History instance) => <String, dynamic>{
     };
 
 HistoryItem _$HistoryItemFromJson(Map<String, dynamic> json) => HistoryItem(
-      characterCountChangeFrom: json['character_count_change_from'] as int,
-      characterCountChangeTo: json['character_count_change_to'] as int,
+      characterCountChangeFrom:
+          (json['character_count_change_from'] as num).toInt(),
+      characterCountChangeTo:
+          (json['character_count_change_to'] as num).toInt(),
       contentType: json['contentType'] as String,
-      dateUnix: json['date_unix'] as int,
+      dateUnix: (json['date_unix'] as num).toInt(),
       feedback: Feedback.fromJson(json['feedback'] as Map<String, dynamic>),
       historyItemId: json['history_item_id'] as String,
       requestId: json['request_id'] as String,
@@ -405,15 +408,15 @@ SubscriptionInfo _$SubscriptionInfoFromJson(Map<String, dynamic> json) =>
       canUseInstantVoiceCloning: json['can_use_instant_voice_cloning'] as bool,
       canUseProfessionalVoiceCloning:
           json['can_use_professional_voice_cloning'] as bool,
-      characterCount: json['character_count'] as int,
-      characterLimit: json['character_limit'] as int,
+      characterCount: (json['character_count'] as num).toInt(),
+      characterLimit: (json['character_limit'] as num).toInt(),
       currency: json['currency'] as String,
       nextCharacterCountResetUnix:
-          json['next_character_count_reset_unix'] as int,
-      professionalVoiceLimit: json['professional_voice_limit'] as int,
+          (json['next_character_count_reset_unix'] as num).toInt(),
+      professionalVoiceLimit: (json['professional_voice_limit'] as num).toInt(),
       status: json['status'] as String,
       tier: json['tier'] as String,
-      voiceLimit: json['voice_limit'] as int,
+      voiceLimit: (json['voice_limit'] as num).toInt(),
     );
 
 Map<String, dynamic> _$SubscriptionInfoToJson(SubscriptionInfo instance) =>
@@ -445,16 +448,16 @@ ExtendedSubscriptionInfo _$ExtendedSubscriptionInfoFromJson(
       canUseInstantVoiceCloning: json['can_use_instant_voice_cloning'] as bool,
       canUseProfessionalVoiceCloning:
           json['can_use_professional_voice_cloning'] as bool,
-      characterCount: json['character_count'] as int,
-      characterLimit: json['character_limit'] as int,
+      characterCount: (json['character_count'] as num).toInt(),
+      characterLimit: (json['character_limit'] as num).toInt(),
       currency: json['currency'] as String,
       hasOpenInvoices: json['has_open_invoices'] as bool,
       nextInvoice:
           NextInvoice.fromJson(json['next_invoice'] as Map<String, dynamic>),
-      professionalVoiceLimit: json['professional_voice_limit'] as int,
+      professionalVoiceLimit: (json['professional_voice_limit'] as num).toInt(),
       status: json['status'] as String,
       tier: json['tier'] as String,
-      voiceLimit: json['voice_limit'] as int,
+      voiceLimit: (json['voice_limit'] as num).toInt(),
     );
 
 Map<String, dynamic> _$ExtendedSubscriptionInfoToJson(
@@ -479,8 +482,9 @@ Map<String, dynamic> _$ExtendedSubscriptionInfoToJson(
     };
 
 NextInvoice _$NextInvoiceFromJson(Map<String, dynamic> json) => NextInvoice(
-      amountDueCents: json['amount_due_cents'] as int,
-      nextPaymentAttemptUnix: json['next_payment_attempt_unix'] as int,
+      amountDueCents: (json['amount_due_cents'] as num).toInt(),
+      nextPaymentAttemptUnix:
+          (json['next_payment_attempt_unix'] as num).toInt(),
     );
 
 Map<String, dynamic> _$NextInvoiceToJson(NextInvoice instance) =>
