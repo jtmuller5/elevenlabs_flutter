@@ -199,7 +199,6 @@ class ElevenLabsAPI {
             'optimize_streaming_latency': optimizeStreamingLatency
           },
           options: Options(
-            contentType: 'application/json',
             responseType: ResponseType.bytes,
           ),
         );
@@ -208,7 +207,6 @@ class ElevenLabsAPI {
           '/v1/text-to-speech/${request.voiceId}',
           data: request,
           options: Options(
-            contentType: 'application/json',
             responseType: ResponseType.bytes,
           ),
         );
