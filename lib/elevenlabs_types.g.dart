@@ -169,8 +169,10 @@ FineTuning _$FineTuningFromJson(Map<String, dynamic> json) => $checkedCreate(
         final val = FineTuning(
           fineTuningRequested:
               $checkedConvert('fine_tuning_requested', (v) => v as bool?),
-          fineTuningState: $checkedConvert('finetuning_state',
-              (v) => const FineTuningStateConverter().fromJson(v as String)),
+          fineTuningState: $checkedConvert(
+              'finetuning_state',
+              (v) => _$JsonConverterFromJson<String, FineTuningState<dynamic>>(
+                  v, const FineTuningStateConverter().fromJson)),
           isAllowedToFineTune:
               $checkedConvert('is_allowed_to_fine_tune', (v) => v as bool?),
           language: $checkedConvert(
@@ -213,7 +215,9 @@ Map<String, dynamic> _$FineTuningToJson(FineTuning instance) =>
     <String, dynamic>{
       'fine_tuning_requested': instance.fineTuningRequested,
       'finetuning_state':
-          const FineTuningStateConverter().toJson(instance.fineTuningState),
+          _$JsonConverterToJson<String, FineTuningState<dynamic>>(
+              instance.fineTuningState,
+              const FineTuningStateConverter().toJson),
       'is_allowed_to_fine_tune': instance.isAllowedToFineTune,
       'language': instance.language,
       'model_id': instance.modelId,
@@ -223,6 +227,18 @@ Map<String, dynamic> _$FineTuningToJson(FineTuning instance) =>
       'verification_failures': instance.verificationFailures,
       'manual_verification': instance.manualVerification,
     };
+
+Value? _$JsonConverterFromJson<Json, Value>(
+  Object? json,
+  Value? Function(Json json) fromJson,
+) =>
+    json == null ? null : fromJson(json as Json);
+
+Json? _$JsonConverterToJson<Json, Value>(
+  Value? value,
+  Json? Function(Value value) toJson,
+) =>
+    value == null ? null : toJson(value);
 
 VerificationAttempt _$VerificationAttemptFromJson(Map<String, dynamic> json) =>
     VerificationAttempt(

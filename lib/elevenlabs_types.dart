@@ -221,7 +221,7 @@ class FineTuning {
   final bool? fineTuningRequested;
   @JsonKey(name: 'finetuning_state')
   @FineTuningStateConverter()
-  final FineTuningState fineTuningState;
+  final FineTuningState? fineTuningState;
   @JsonKey(name: 'is_allowed_to_fine_tune')
   final bool? isAllowedToFineTune;
   final Language? language;
