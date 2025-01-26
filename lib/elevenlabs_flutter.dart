@@ -313,10 +313,12 @@ class ElevenLabsAPI {
   // Helper methods
 
   dynamic _handleError(error) {
-    print("ElevenLabs Flutter Error: ${jsonDecode(error)}");
+    print("ElevenLabs Flutter Error: ${error.toString()}");
 
     // Handle DioExceptions
     if (error is DioException) {
+      print("Message: ${error.message}");
+      print("Type: ${error.type}");
       switch (error.type) {
         case DioExceptionType.connectionTimeout:
         case DioExceptionType.sendTimeout:
