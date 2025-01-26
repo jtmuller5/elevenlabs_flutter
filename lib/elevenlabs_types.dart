@@ -224,7 +224,7 @@ class FineTuning {
   final FineTuningState? fineTuningState;
   @JsonKey(name: 'is_allowed_to_fine_tune')
   final bool? isAllowedToFineTune;
-  final Language? language;
+  final String? language;
   @JsonKey(name: 'model_id')
   final String? modelId;
   @JsonKey(name: 'slice_ids')

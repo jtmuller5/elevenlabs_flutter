@@ -175,11 +175,7 @@ FineTuning _$FineTuningFromJson(Map<String, dynamic> json) => $checkedCreate(
                   v, const FineTuningStateConverter().fromJson)),
           isAllowedToFineTune:
               $checkedConvert('is_allowed_to_fine_tune', (v) => v as bool?),
-          language: $checkedConvert(
-              'language',
-              (v) => v == null
-                  ? null
-                  : Language.fromJson(v as Map<String, dynamic>)),
+          language: $checkedConvert('language', (v) => v as String?),
           modelId: $checkedConvert('model_id', (v) => v as String?),
           sliceIds: $checkedConvert('slice_ids',
               (v) => (v as List<dynamic>?)?.map((e) => e as String).toList()),
