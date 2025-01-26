@@ -1,6 +1,7 @@
 library elevenlabs_flutter;
 
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -219,7 +220,6 @@ class ElevenLabsAPI {
       final responseFile = await File(fileName).writeAsBytes(response.data);
       return responseFile;
     } catch (error) {
-      print("ElevenLabs Flutter Error: $error");
       throw _handleError(error);
     }
   }
@@ -313,6 +313,8 @@ class ElevenLabsAPI {
   // Helper methods
 
   dynamic _handleError(error) {
+    print("ElevenLabs Flutter Error: ${jsonDecode(error)}");
+
     // Handle DioExceptions
     if (error is DioException) {
       switch (error.type) {
