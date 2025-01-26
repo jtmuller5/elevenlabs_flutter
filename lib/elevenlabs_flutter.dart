@@ -61,6 +61,7 @@ class ElevenLabsAPI {
   Future<List<Voice>> listVoices() async {
     try {
       final response = await _dio.get('/v1/voices');
+      print("Voices: ${response}");
       final List<Map<String, dynamic>> responseList =
           List.castFrom(response.data["voices"]);
       final List<Voice> voices = [];
