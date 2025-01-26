@@ -6,6 +6,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:elevenlabs_flutter/elevenlabs_config.dart';
 import 'package:elevenlabs_flutter/elevenlabs_types.dart';
+import 'package:flutter/material.dart';
 
 class ElevenLabsAPI {
   // Singleton instance
@@ -218,6 +219,7 @@ class ElevenLabsAPI {
       final responseFile = await File(fileName).writeAsBytes(response.data);
       return responseFile;
     } catch (error) {
+      debugPrint("ElevenLabs Flutter Error: $error");
       throw _handleError(error);
     }
   }
