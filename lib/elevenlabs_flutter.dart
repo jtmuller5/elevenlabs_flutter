@@ -219,7 +219,7 @@ class ElevenLabsAPI {
       final responseFile = await File(fileName).writeAsBytes(response.data);
       return responseFile;
     } catch (error) {
-      debugPrint("ElevenLabs Flutter Error: $error");
+      print("ElevenLabs Flutter Error: $error");
       throw _handleError(error);
     }
   }
