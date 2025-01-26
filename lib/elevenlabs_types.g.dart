@@ -27,9 +27,18 @@ Map<String, dynamic> _$TextToSpeechRequestToJson(
     };
 
 VoiceSettings _$VoiceSettingsFromJson(Map<String, dynamic> json) =>
-    VoiceSettings(
-      similarityBoost: (json['similarity_boost'] as num).toDouble(),
-      stability: (json['stability'] as num).toDouble(),
+    $checkedCreate(
+      'VoiceSettings',
+      json,
+      ($checkedConvert) {
+        final val = VoiceSettings(
+          similarityBoost:
+              $checkedConvert('similarity_boost', (v) => (v as num).toDouble()),
+          stability: $checkedConvert('stability', (v) => (v as num).toDouble()),
+        );
+        return val;
+      },
+      fieldKeyMap: const {'similarityBoost': 'similarity_boost'},
     );
 
 Map<String, dynamic> _$VoiceSettingsToJson(VoiceSettings instance) =>
@@ -92,30 +101,50 @@ Map<String, dynamic> _$LanguageToJson(Language instance) => <String, dynamic>{
       'name': instance.name,
     };
 
-Voice _$VoiceFromJson(Map<String, dynamic> json) => Voice(
-      availableForTiers: (json['available_for_tiers'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      category: json['category'] as String,
-      description: json['description'] as String?,
-      fineTuning:
-          FineTuning.fromJson(json['fine_tuning'] as Map<String, dynamic>),
-      name: json['name'] as String,
-      language: json['language'] as String?,
-      labels: json['labels'] == null
-          ? null
-          : Labels.fromJson(json['labels'] as Map<String, dynamic>),
-      previewUrl: json['preview_url'] as String,
-      samples: (json['samples'] as List<dynamic>?)
-          ?.map((e) => Sample.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      settings: json['settings'] == null
-          ? const VoiceSettings(similarityBoost: 0.5, stability: 0.75)
-          : VoiceSettings.fromJson(json['settings'] as Map<String, dynamic>),
-      sharing: json['sharing'] == null
-          ? null
-          : Sharing.fromJson(json['sharing'] as Map<String, dynamic>),
-      voiceId: json['voice_id'] as String,
+Voice _$VoiceFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'Voice',
+      json,
+      ($checkedConvert) {
+        final val = Voice(
+          availableForTiers: $checkedConvert('available_for_tiers',
+              (v) => (v as List<dynamic>?)?.map((e) => e as String).toList()),
+          category: $checkedConvert('category', (v) => v as String),
+          description: $checkedConvert('description', (v) => v as String?),
+          fineTuning: $checkedConvert('fine_tuning',
+              (v) => FineTuning.fromJson(v as Map<String, dynamic>)),
+          name: $checkedConvert('name', (v) => v as String),
+          language: $checkedConvert('language', (v) => v as String?),
+          labels: $checkedConvert(
+              'labels',
+              (v) => v == null
+                  ? null
+                  : Labels.fromJson(v as Map<String, dynamic>)),
+          previewUrl: $checkedConvert('preview_url', (v) => v as String),
+          samples: $checkedConvert(
+              'samples',
+              (v) => (v as List<dynamic>?)
+                  ?.map((e) => Sample.fromJson(e as Map<String, dynamic>))
+                  .toList()),
+          settings: $checkedConvert(
+              'settings',
+              (v) => v == null
+                  ? const VoiceSettings(similarityBoost: 0.5, stability: 0.75)
+                  : VoiceSettings.fromJson(v as Map<String, dynamic>)),
+          sharing: $checkedConvert(
+              'sharing',
+              (v) => v == null
+                  ? null
+                  : Sharing.fromJson(v as Map<String, dynamic>)),
+          voiceId: $checkedConvert('voice_id', (v) => v as String),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'availableForTiers': 'available_for_tiers',
+        'fineTuning': 'fine_tuning',
+        'previewUrl': 'preview_url',
+        'voiceId': 'voice_id'
+      },
     );
 
 Map<String, dynamic> _$VoiceToJson(Voice instance) => <String, dynamic>{
@@ -133,27 +162,51 @@ Map<String, dynamic> _$VoiceToJson(Voice instance) => <String, dynamic>{
       'voice_id': instance.voiceId,
     };
 
-FineTuning _$FineTuningFromJson(Map<String, dynamic> json) => FineTuning(
-      fineTuningRequested: json['fine_tuning_requested'] as bool?,
-      fineTuningState: const FineTuningStateConverter()
-          .fromJson(json['finetuning_state'] as String),
-      isAllowedToFineTune: json['is_allowed_to_fine_tune'] as bool?,
-      language: json['language'] == null
-          ? null
-          : Language.fromJson(json['language'] as Map<String, dynamic>),
-      modelId: json['model_id'] as String?,
-      sliceIds: (json['slice_ids'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
-      verificationAttempts: (json['verification_attempts'] as List<dynamic>?)
-          ?.map((e) => VerificationAttempt.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      verificationAttemptsCount:
-          (json['verification_attempts_count'] as num).toInt(),
-      verificationFailures: (json['verification_failures'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
-      manualVerification: json['manual_verification'] as bool?,
+FineTuning _$FineTuningFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'FineTuning',
+      json,
+      ($checkedConvert) {
+        final val = FineTuning(
+          fineTuningRequested:
+              $checkedConvert('fine_tuning_requested', (v) => v as bool?),
+          fineTuningState: $checkedConvert('finetuning_state',
+              (v) => const FineTuningStateConverter().fromJson(v as String)),
+          isAllowedToFineTune:
+              $checkedConvert('is_allowed_to_fine_tune', (v) => v as bool?),
+          language: $checkedConvert(
+              'language',
+              (v) => v == null
+                  ? null
+                  : Language.fromJson(v as Map<String, dynamic>)),
+          modelId: $checkedConvert('model_id', (v) => v as String?),
+          sliceIds: $checkedConvert('slice_ids',
+              (v) => (v as List<dynamic>?)?.map((e) => e as String).toList()),
+          verificationAttempts: $checkedConvert(
+              'verification_attempts',
+              (v) => (v as List<dynamic>?)
+                  ?.map((e) =>
+                      VerificationAttempt.fromJson(e as Map<String, dynamic>))
+                  .toList()),
+          verificationAttemptsCount: $checkedConvert(
+              'verification_attempts_count', (v) => (v as num).toInt()),
+          verificationFailures: $checkedConvert('verification_failures',
+              (v) => (v as List<dynamic>).map((e) => e as String).toList()),
+          manualVerification:
+              $checkedConvert('manual_verification', (v) => v as bool?),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'fineTuningRequested': 'fine_tuning_requested',
+        'fineTuningState': 'finetuning_state',
+        'isAllowedToFineTune': 'is_allowed_to_fine_tune',
+        'modelId': 'model_id',
+        'sliceIds': 'slice_ids',
+        'verificationAttempts': 'verification_attempts',
+        'verificationAttemptsCount': 'verification_attempts_count',
+        'verificationFailures': 'verification_failures',
+        'manualVerification': 'manual_verification'
+      },
     );
 
 Map<String, dynamic> _$FineTuningToJson(FineTuning instance) =>
@@ -213,12 +266,25 @@ Map<String, dynamic> _$LabelsToJson(Labels instance) => <String, dynamic>{
       'labels': instance.labels,
     };
 
-Sample _$SampleFromJson(Map<String, dynamic> json) => Sample(
-      fileName: json['file_name'] as String,
-      hash: json['hash'] as String,
-      mimeType: json['mime_type'] as String,
-      sampleId: json['sample_id'] as String,
-      sizeBytes: (json['size_bytes'] as num).toInt(),
+Sample _$SampleFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'Sample',
+      json,
+      ($checkedConvert) {
+        final val = Sample(
+          fileName: $checkedConvert('file_name', (v) => v as String),
+          hash: $checkedConvert('hash', (v) => v as String),
+          mimeType: $checkedConvert('mime_type', (v) => v as String),
+          sampleId: $checkedConvert('sample_id', (v) => v as String),
+          sizeBytes: $checkedConvert('size_bytes', (v) => (v as num).toInt()),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'fileName': 'file_name',
+        'mimeType': 'mime_type',
+        'sampleId': 'sample_id',
+        'sizeBytes': 'size_bytes'
+      },
     );
 
 Map<String, dynamic> _$SampleToJson(Sample instance) => <String, dynamic>{
@@ -229,14 +295,33 @@ Map<String, dynamic> _$SampleToJson(Sample instance) => <String, dynamic>{
       'size_bytes': instance.sizeBytes,
     };
 
-Sharing _$SharingFromJson(Map<String, dynamic> json) => Sharing(
-      clonedByCount: (json['cloned_by_count'] as num).toInt(),
-      historyItemSampleId: json['history_item_sample_id'] as String,
-      likedByCount: (json['liked_by_count'] as num).toInt(),
-      originalVoiceId: json['original_voice_id'] as String,
-      publicOwnerId: json['public_owner_id'] as String,
-      status: json['status'] as String,
-      voiceId: json['voice_id'] as String,
+Sharing _$SharingFromJson(Map<String, dynamic> json) => $checkedCreate(
+      'Sharing',
+      json,
+      ($checkedConvert) {
+        final val = Sharing(
+          clonedByCount:
+              $checkedConvert('cloned_by_count', (v) => (v as num).toInt()),
+          historyItemSampleId:
+              $checkedConvert('history_item_sample_id', (v) => v as String),
+          likedByCount:
+              $checkedConvert('liked_by_count', (v) => (v as num).toInt()),
+          originalVoiceId:
+              $checkedConvert('original_voice_id', (v) => v as String),
+          publicOwnerId: $checkedConvert('public_owner_id', (v) => v as String),
+          status: $checkedConvert('status', (v) => v as String),
+          voiceId: $checkedConvert('voice_id', (v) => v as String),
+        );
+        return val;
+      },
+      fieldKeyMap: const {
+        'clonedByCount': 'cloned_by_count',
+        'historyItemSampleId': 'history_item_sample_id',
+        'likedByCount': 'liked_by_count',
+        'originalVoiceId': 'original_voice_id',
+        'publicOwnerId': 'public_owner_id',
+        'voiceId': 'voice_id'
+      },
     );
 
 Map<String, dynamic> _$SharingToJson(Sharing instance) => <String, dynamic>{

@@ -44,7 +44,7 @@ class TextToSpeechRequest {
 /// Requires similarity_boost and stability
 /// Both values are 0-1.0, recommended settings are .5 and .75
 /// Check ElevenLabs Docs for more info
-@JsonSerializable()
+@JsonSerializable(checked: true)
 class VoiceSettings {
   @JsonKey(name: 'similarity_boost')
   final double similarityBoost;
@@ -158,7 +158,7 @@ class Language {
 /// Returned from /v1/voices endpoints
 /// Contains voice metadata
 /// See ElevenLabs docs for more info
-@JsonSerializable()
+@JsonSerializable(checked: true)
 class Voice {
   @JsonKey(name: 'available_for_tiers')
   final List<String>? availableForTiers;
@@ -215,7 +215,7 @@ enum FineTuningState<String> {
 /// Nested within Voice response
 /// Indicates fine tuning status for voice
 /// See ElevenLabs docs for more info
-@JsonSerializable()
+@JsonSerializable(checked: true)
 class FineTuning {
   @JsonKey(name: 'fine_tuning_requested')
   final bool? fineTuningRequested;
@@ -361,7 +361,7 @@ class Labels {
 /// Nested within Voice response
 /// Contains voice sample metadata
 /// See ElevenLabs docs for more info
-@JsonSerializable()
+@JsonSerializable(checked: true)
 class Sample {
   @JsonKey(name: 'file_name')
   final String fileName;
@@ -391,7 +391,7 @@ class Sample {
 /// Nested within Voice response
 /// Contains voice sharing metadata
 /// See ElevenLabs docs for more info
-@JsonSerializable()
+@JsonSerializable(checked: true)
 class Sharing {
   @JsonKey(name: 'cloned_by_count')
   final int clonedByCount;

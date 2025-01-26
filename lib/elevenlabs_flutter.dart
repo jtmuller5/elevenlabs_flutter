@@ -2,6 +2,7 @@ library elevenlabs_flutter;
 
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -312,7 +313,7 @@ class ElevenLabsAPI {
   // Helper methods
 
   dynamic _handleError(error) {
-    print("ElevenLabs Flutter Error: ${error.toString()}");
+    log("ElevenLabs Flutter Error: ${error.toString()}");
 
     // Handle DioExceptions
     if (error is DioException) {
